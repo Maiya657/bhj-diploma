@@ -11,11 +11,7 @@ class User {
 	}
 
 	static current() {
-		let data;
-		if (localStorage.user) {
-			data = JSON.parse(localStorage.user);
-		}
-		return data;
+    return JSON.parse(localStorage.getItem('user'));
 	}
 
 	static fetch(callback) {

@@ -45,7 +45,8 @@ class TransactionsPage {
 				"id": id
 			}, (err, response) => {
 				if (!err && response.success) {
-					this.update();
+          this.update();
+					App.update();
 				}
 			})
 		}
@@ -117,10 +118,8 @@ class TransactionsPage {
 	}
 
 	renderTransactions(data) {
-		const content = this.element.querySelector('.content');
-		content.innerHTML = '';
-		data.forEach(row => {
-			content.insertAdjacentHTML('beforeEnd', this.getTransactionHTML(row));
-		})
+    this.element.querySelector('.content').innerHTML = data.reduce((accumulator, transaction) => {
+      return accumulator + this.getTransactionHTML(transaction);
+    }, '');
 	}
 }
